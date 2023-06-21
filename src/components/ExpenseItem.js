@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { FaPlusCircle,FaMinusCircle } from 'react-icons/fa';
-import { TiDelete} from 'react-icons/ti';
+import { FcCancel} from "react-icons/fc";
 import { AppContext } from '../context/AppContext';
 
 const ExpenseItem = (props) => {
@@ -44,17 +44,14 @@ const ExpenseItem = (props) => {
         });
 
     }
-
-
     return (
         <tr>
             <td>{props.name}</td>
             <td>{currency}{props.cost}</td>
             <td><FaPlusCircle size='1.9em' color="#4ead5c" onClick={event => increaseAllocation(props.name)}></FaPlusCircle></td>
             <td><FaMinusCircle size='1.9em' color="#af1e11" onClick={event => decreaseAllocation(props.name)}></FaMinusCircle></td>
-            <td><TiDelete size='1.5em' onClick={handleDeleteExpense}></TiDelete></td>
+            <td><FcCancel size='1.9em' onClick={handleDeleteExpense}></FcCancel></td>
         </tr>
     );
 };
-
 export default ExpenseItem;

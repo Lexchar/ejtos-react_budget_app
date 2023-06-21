@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
-//define max budget
+//Budget maximal fixé à 20 000
 const BUDGET_MAX_VALUE = 20000;
 
 
@@ -15,36 +15,31 @@ const Budget = () => {
     return (total += item.cost);
   }, 0);
 
-  //handle increase or decrease budget
+  //Augmentation diminution du budget
   const onChangeBudgetHandler = (event) => {
 
-    //convert input into number type
     const enteredValue = Number(event.target.value);
 
-    // check if the entered value is a number
+    // controle des variables -  valeur vide
     if (Number.isNaN(enteredValue)) {
       alert('Please enter a valid number.');
       return;
     }
-
-    // check if the entered value is an integer number
+    // controle des variables -  valeur non numérique
     if (!Number.isInteger(enteredValue)) {
-      alert('Please enter an integer number.');
+      alert('The value must be an integer.');
       return;
     }
-
-    // check if the budget value < total expenses
+    // controle du budget
     if (enteredValue < totalExpenses) {
       alert(
-        "The value of the buget can't be lower than the expenses value " +
+        "The buget can't be lower than the spending " +
           currency +
           totalExpenses
       );
-
-
     } else {
       if (enteredValue > BUDGET_MAX_VALUE) {
-        alert('Please enter a value less that ' + BUDGET_MAX_VALUE);
+        alert('The budget cannot exceed the max budget of ' + BUDGET_MAX_VALUE);
         return;
       }
       //action dispatch function, sent type and payload to reducer

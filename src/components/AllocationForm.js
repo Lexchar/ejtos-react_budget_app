@@ -3,7 +3,6 @@ import { AppContext } from '../context/AppContext';
 
 const AllocationForm = (props) => {
   const { remaining, currency, dispatch } = useContext(AppContext);
-
   const [name, setName] = useState('');
   const [cost, setCost] = useState('');
   const [action, setAction] = useState('');
@@ -19,12 +18,12 @@ const AllocationForm = (props) => {
 
     // check if the entered value is an integer number
     if (!Number.isInteger(enteredValue)) {
-      alert('Please enter an integer number.');
+      alert('The value must be an integer.');
       return;
     }
 
     if (cost > remaining) {
-      alert('The value cannot exceed remaining funds  £' + remaining);
+      alert('The value cannot exceed remaining funds' + remaining);
       setCost('');
       return;
     }
@@ -112,14 +111,13 @@ const AllocationForm = (props) => {
             id="cost"
             value={cost}
             style={{marginLeft:"5px", size: 10 }}
-            onChange={(event) => setCost(event.target.value)}
-          ></input>
+            onChange={(event) => setCost(event.target.value)}>
+          </input>
 
           <button
             className="btn btn-primary"
             onClick={submitEvent}
-            style={{marginLeft: '2rem' }}
-          >
+            style={{marginLeft: '2rem' }}>
             Save
           </button>
         </div>

@@ -2,14 +2,8 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Currency = () => {
-
-  //get current global state
   const { currency, dispatch } = useContext(AppContext);
-
-  //state hook update our component
   const [isOpen, setIsOpen] = useState(false);
-
-  //update currency in global state
   const setCurrencyHandler = (currency) => {
     dispatch({
       type: 'CHG_CURRENCY',
@@ -17,8 +11,7 @@ const Currency = () => {
     });
   };
 
-  //  '£' '€' '$' '₹'
-  
+  //  '£' '€' '$' '₹' '¥' 'B'
   const currencyLabel = ()=> {
     switch(currency){
       case '$' :
@@ -29,11 +22,14 @@ const Currency = () => {
         return '€ Euro'
       case '₹' :
         return '₹ Ruppee'
+      case '¥' :
+        return '¥ Yen'   
+      case 'B' :
+        return 'B BTC'             
       default:
         return ''
     }
   }
-
   return (
     <div id="currency-menu" className="dropdown" style={{ cursor: 'pointer' }}>
       <button
@@ -42,7 +38,7 @@ const Currency = () => {
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
-        style={{ backgroundColor: '#93e399', color: '#fff' }}
+        style={{ backgroundColor: '#3CB371', color: '#fff' }}
         onClick={() => setIsOpen(!isOpen)}
       >
         Currency {'('}{currencyLabel()}{')'}
@@ -82,6 +78,20 @@ const Currency = () => {
             onClick={() => setCurrencyHandler('₹')}
           >
            ₹ Ruppee
+          </button>
+          <button
+            className="dropdown-item"
+            type="button"
+            onClick={() => setCurrencyHandler('¥')}
+          >
+           ¥ Yen
+          </button>
+          <button
+            className="dropdown-item"
+            type="button"
+            onClick={() => setCurrencyHandler('B')}
+          >
+           B BTC
           </button>
         </li>
       </ul>
